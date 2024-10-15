@@ -18,9 +18,14 @@ const { authenticateToken } = require('./utilities')
 
 app.use(express.json())
 app.use(cors({
-    origin: '*', // Allows all origins
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed methods
-    allowedHeaders: ['Content-Type', 'Authorization'] // Specify allowed headers
+    origin: (origin, callback) => {
+        if (!origin || origin === 'http://localhost:5173') {
+            return callback(null, true);
+        }
+        return callback(new Error('Not allowed by CORS'));
+    },
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 app.get('/', (req, res) => {
