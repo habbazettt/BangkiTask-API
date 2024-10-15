@@ -18,8 +18,8 @@ const { authenticateToken } = require('./utilities')
 
 app.use(express.json())
 app.use(cors({
-    origin: '*',
-    credentials: false,
+    origin: 'http://localhost:5173',
+    credentials: true,
 }));
 
 app.get('/', (req, res) => {
@@ -383,3 +383,4 @@ app.get('/search-notes', authenticateToken, async (req, res) => {
 app.listen(8000)
 
 module.exports = app
+
