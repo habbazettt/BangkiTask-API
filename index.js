@@ -18,8 +18,10 @@ const { authenticateToken } = require('./utilities')
 
 app.use(express.json())
 app.use(cors({
-    origin: '*',
-}))
+    origin: '*', // Allows all origins
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed methods
+    allowedHeaders: ['Content-Type', 'Authorization'] // Specify allowed headers
+}));
 
 app.get('/', (req, res) => {
     res.json({ data: "Hello World!" })
