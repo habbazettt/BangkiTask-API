@@ -19,6 +19,7 @@ const { authenticateToken } = require('./utilities')
 app.use(express.json())
 app.use(cors({
     origin: ['https://bangki-task-api.vercel.app'],
+    credentials: false,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     preflightContinue: false,
