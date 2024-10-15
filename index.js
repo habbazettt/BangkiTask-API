@@ -18,7 +18,7 @@ const { authenticateToken } = require('./utilities')
 
 app.use(express.json())
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: ['http://localhost:5173', 'https://bangki-task-app.vercel.app'],
     credentials: true,
 }));
 
@@ -87,7 +87,7 @@ app.post('/create-account', async (req, res) => {
 })
 
 // Login Account
-app.post('/login', async (req, res) => {
+app.post('/login', cors(), async (req, res) => {
     const { email, password } = req.body
 
     if (!email) {
@@ -127,6 +127,7 @@ app.post('/login', async (req, res) => {
             })
     }
 })
+
 
 // Get User
 app.get('/get-user', authenticateToken, async (req, res) => {
