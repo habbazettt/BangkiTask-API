@@ -18,12 +18,12 @@ const { authenticateToken } = require('./utilities')
 
 app.use(express.json())
 app.use(cors({
-    origin: ['https://bangkitask.netlify.app', 'https://localhost:3000'],
-    credentials: true,
+    origin: '*',
+    credentials: false,
 }));
 
 app.get('/', (req, res) => {
-    res.json({ data: "Hello World!" })
+    res.send('Hello World!')
 })
 
 
