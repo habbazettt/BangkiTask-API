@@ -17,16 +17,14 @@ const jwt = require('jsonwebtoken')
 const { authenticateToken } = require('./utilities')
 
 app.use(express.json())
-app.use(cors({
-    origin: ['https://bangki-task-api.vercel.app'],
-    credentials: false,
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    preflightContinue: false,
-    optionsSuccessStatus: 200
-}));
+app.use(cors());
 
 app.get('/', (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*")
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Max-Age", "1800");
+    res.setHeader("Access-Control-Allow-Headers", "content-type");
+    res.setHeader("Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS");
     res.json({ data: "Hello World!" })
 })
 
